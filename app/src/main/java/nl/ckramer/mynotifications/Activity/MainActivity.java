@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import nl.ckramer.mynotifications.Fragment.AgendaFragment;
 import nl.ckramer.mynotifications.Fragment.HomeFragment;
 import nl.ckramer.mynotifications.Fragment.MonthFragment;
+import nl.ckramer.mynotifications.Fragment.NoteFragment;
 import nl.ckramer.mynotifications.Fragment.TodayFragment;
 import nl.ckramer.mynotifications.Fragment.WeekFragment;
 import nl.ckramer.mynotifications.R;
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
     NavigationView mNavigationView;
+
+    /*
+    * https://objectbox.io/
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_agenda:
                 fragmentClass = AgendaFragment.class;
+                break;
+            case R.id.nav_note:
+                fragmentClass = NoteFragment.class;
                 break;
             default:
                 fragmentClass = HomeFragment.class;

@@ -5,8 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import androidx.fragment.app.Fragment;
+import io.objectbox.Box;
+import nl.ckramer.mynotifications.Entity.Note;
 import nl.ckramer.mynotifications.R;
+import nl.ckramer.mynotifications.Util.ObjectBox;
 
 public class HomeFragment extends Fragment {
 

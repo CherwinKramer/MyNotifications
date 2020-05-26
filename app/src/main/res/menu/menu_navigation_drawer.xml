@@ -23,5 +23,9 @@
             android:id="@+id/nav_agenda"
             android:title="Agenda" />
 
+        <item
+            android:id="@+id/nav_note"
+            android:title="Note" />
+
     </group>
 </menu>

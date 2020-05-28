@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:4527962249490774298",
-      "lastPropertyId": "3:4975592674666126314",
+      "lastPropertyId": "4:244210113281495447",
       "name": "Note",
       "properties": [
         {
@@ -23,12 +23,61 @@
           "id": "3:4975592674666126314",
           "name": "description",
           "type": 9
+        },
+        {
+          "id": "4:244210113281495447",
+          "name": "createdDate",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3280450797295766213",
+      "lastPropertyId": "7:8732398307886483724",
+      "name": "Notification",
+      "properties": [
+        {
+          "id": "1:7689350487675285222",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6798905373167477244",
+          "name": "createdDate",
+          "type": 10
+        },
+        {
+          "id": "3:8198997618545228106",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:3471438927864485643",
+          "name": "body",
+          "type": 9
+        },
+        {
+          "id": "5:3319911703274327614",
+          "name": "location",
+          "type": 9
+        },
+        {
+          "id": "6:4992618286659182750",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "7:8732398307886483724",
+          "name": "notifyDate",
+          "type": 10
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:4527962249490774298",
+  "lastEntityId": "2:3280450797295766213",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

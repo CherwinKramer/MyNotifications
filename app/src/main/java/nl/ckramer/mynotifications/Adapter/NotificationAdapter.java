@@ -39,9 +39,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Notification notification = mResultList.get(position);
-        holder.title.setText(notification.getTitle());
-        holder.body.setText(notification.getBody());
-        holder.date.setText(notification.getDate().toString());
+        holder.title.setText(notification.getTitle() != null ? notification.getTitle() : "");
+        holder.body.setText(notification.getBody() != null ? notification.getBody() : "");
+        holder.date.setText(notification.getDate() != null ? notification.getDate().toString() : "");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {

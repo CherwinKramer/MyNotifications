@@ -51,7 +51,8 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
         mNotificationRecyclerView = view.findViewById(R.id.note_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mNotificationRecyclerView.setLayoutManager(layoutManager);
-        mNotificationRecyclerView.setAdapter(new NotificationAdapter(notificationList, this));
+        mNotificationAdapter = new NotificationAdapter(notificationList, this);
+        mNotificationRecyclerView.setAdapter(mNotificationAdapter);
         mNotificationRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, layoutManager.getOrientation()));
 
         return view;
@@ -61,7 +62,7 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: Item clicked with position " + position);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment newFragment = new NotificationCreateFragment();
+        Fragment newFragment = new NotificationCreateFragment(mNotificationAdapter.getItem(position));
         transaction.replace(R.id.fragment_content, newFragment);
         transaction.addToBackStack("notificationCreateFragment");
         transaction.commit();

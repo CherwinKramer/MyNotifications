@@ -88,7 +88,7 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_save, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -110,10 +110,10 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
         boolean error = false;
 
         if(mTitleEditText == null || mTitleEditText.getText().toString() == null || mTitleEditText.getText().toString().isEmpty()) {
-            mTitleEditText.setError("Title can not be empty!");
+            mTitleEditText.setError(getResources().getString(R.string.common_validation_empty_error));
         }
         if(mDateEditText == null || !DateHelper.isDate(mDateEditText.getText().toString())) {
-            mDateEditText.setError("Date can not be empty!");
+            mDateEditText.setError(getResources().getString(R.string.common_validation_empty_error));
         }
         return !error;
     }

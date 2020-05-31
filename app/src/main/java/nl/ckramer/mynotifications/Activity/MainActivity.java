@@ -116,28 +116,34 @@ public class MainActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_home:
                 changeFragment(new HomeFragment(), needToAddBackstack);
+                setTitle(R.string.notification);
                 break;
             case R.id.nav_today:
                 changeFragment(new TodayFragment(), needToAddBackstack);
+                setTitle(R.string.screen_today);
                 break;
             case R.id.nav_week:
                 changeFragment(new WeekFragment(), needToAddBackstack);
+                setTitle(R.string.screen_week);
                 break;
             case R.id.nav_month:
                 changeFragment(new MonthFragment(), needToAddBackstack);
+                setTitle(R.string.screen_month);
                 break;
             case R.id.nav_agenda:
                 changeFragment(new AgendaFragment(), needToAddBackstack);
+                setTitle(R.string.screen_agenda);
                 break;
             case R.id.nav_note:
                 changeFragment(new NoteFragment(), needToAddBackstack);
+                setTitle(R.string.screen_note);
                 break;
             default:
                 changeFragment(new HomeFragment(), needToAddBackstack);
+                setTitle(R.string.notification);
         }
 
         menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
         mDrawerLayout.closeDrawers();
         return true;
     }

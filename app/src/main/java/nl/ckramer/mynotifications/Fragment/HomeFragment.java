@@ -15,6 +15,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -59,7 +61,26 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
         mNotificationRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, layoutManager.getOrientation()));
 
         setHasOptionsMenu(true);
+
+        generateNotification();
         return view;
+    }
+
+    private void generateNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, "default")
+                .setSmallIcon(R.drawable.ic_app)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mContext);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1, builder.build());
+
+
+
     }
 
     @Override

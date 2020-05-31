@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="MyNotifications" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import io.objectbox.Box;
+import nl.ckramer.mynotifications.Activity.IconStatus;
 import nl.ckramer.mynotifications.Entity.Notification;
 import nl.ckramer.mynotifications.R;
 import nl.ckramer.mynotifications.Util.DateHelper;
@@ -56,6 +57,7 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification_create, container, false);
+//        ((IconStatus) getActivity()).showBack();
         initializeViews(view);
         initializeData();
         setHasOptionsMenu(true);
@@ -174,4 +176,5 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
         mCurrentEditText.setText(dateString);
         view.dismiss();
     }
+
 }

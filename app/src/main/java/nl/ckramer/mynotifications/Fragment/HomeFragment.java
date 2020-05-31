@@ -7,19 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Date;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.objectbox.Box;
-import nl.ckramer.mynotifications.Adapter.NoteAdapter;
 import nl.ckramer.mynotifications.Adapter.NotificationAdapter;
-import nl.ckramer.mynotifications.Entity.Note;
 import nl.ckramer.mynotifications.Entity.Notification;
 import nl.ckramer.mynotifications.R;
 import nl.ckramer.mynotifications.Util.ObjectBox;
@@ -62,9 +58,9 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: Item clicked with position " + position);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment newFragment = new NotificationCreateFragment(mNotificationAdapter.getItem(position));
-        transaction.replace(R.id.fragment_content, newFragment);
-        transaction.addToBackStack("notificationCreateFragment");
+        transaction.setCustomAnimations(R.animator.slide_in_right,R.animator.slide_out_right,R.animator.slide_in_right,R.animator.slide_out_right);
+        transaction.replace(R.id.fragment_content, new NotificationCreateFragment(mNotificationAdapter.getItem(position)));
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

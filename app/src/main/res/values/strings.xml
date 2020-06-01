@@ -27,4 +27,7 @@
     <string name="common_no">No</string>
     <string name="common_undo">Undo</string>
     <string name="common_validation_empty_error">This field may not be empty!</string>
+    <string name="notification_description">The channel which is used to show important notificatins</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_description">The channel which is used for sending reminder notifications</string>
 </resources>

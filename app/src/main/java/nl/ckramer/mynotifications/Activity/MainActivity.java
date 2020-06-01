@@ -1,14 +1,11 @@
 package nl.ckramer.mynotifications.Activity;
 
-import android.app.NotificationChannel;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,9 +21,12 @@ import nl.ckramer.mynotifications.Fragment.AgendaFragment;
 import nl.ckramer.mynotifications.Fragment.HomeFragment;
 import nl.ckramer.mynotifications.Fragment.MonthFragment;
 import nl.ckramer.mynotifications.Fragment.NoteFragment;
+import nl.ckramer.mynotifications.Fragment.NotificationCreateFragment;
 import nl.ckramer.mynotifications.Fragment.TodayFragment;
 import nl.ckramer.mynotifications.Fragment.WeekFragment;
+import nl.ckramer.mynotifications.Model.PushNotification;
 import nl.ckramer.mynotifications.R;
+import nl.ckramer.mynotifications.Util.NotificationUtil;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -82,7 +82,18 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView = findViewById(R.id.navigation_view);
         setupDrawerContent(mNavigationView);
 
-        createNotificationChannel();
+        generateNotificationChannels();
+
+        if(getIntent().getParcelableExtra("notification") != null) {
+            nl.ckramer.mynotifications.Entity.Notification notification = getIntent().getParcelableExtra("notification");
+            if(notification != null) {
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_right, R.animator.slide_in_right, R.animator.slide_out_right);
+                transaction.replace(R.id.fragment_content, new NotificationCreateFragment(notification));
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        }
     }
 
     @Override
@@ -162,20 +173,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.app_name);
-            String description = getString(R.string.app_name);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("default",  name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+    private void generateNotificationChannels() {
+        PushNotification notificationChannel = new PushNotification(getString(R.string.notification), getString(R.string.notification_description), mContext, NotificationManager.IMPORTANCE_MAX, NotificationUtil.NOTIFICATION_CHANNEL);
+        NotificationUtil.createNotificationChannel(notificationChannel);
+
+        PushNotification reminderChannel = new PushNotification(getString(R.string.reminder), getString(R.string.reminder_description), mContext, NotificationManager.IMPORTANCE_HIGH, NotificationUtil.REMINDER_CHANNEL);
+        NotificationUtil.createNotificationChannel(reminderChannel);
     }
 
 }

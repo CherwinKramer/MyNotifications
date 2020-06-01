@@ -1,7 +1,11 @@
 package nl.ckramer.mynotifications.Fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,9 +27,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.objectbox.Box;
+import nl.ckramer.mynotifications.Activity.MainActivity;
 import nl.ckramer.mynotifications.Adapter.NotificationAdapter;
 import nl.ckramer.mynotifications.Entity.Notification;
+import nl.ckramer.mynotifications.Model.PushNotification;
 import nl.ckramer.mynotifications.R;
+import nl.ckramer.mynotifications.Util.NotificationUtil;
 import nl.ckramer.mynotifications.Util.ObjectBox;
 
 public class HomeFragment extends Fragment implements NotificationAdapter.OnItemListener{
@@ -62,29 +69,21 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
 
         setHasOptionsMenu(true);
 
-        generateNotification();
         return view;
     }
 
-    private void generateNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, "default")
-                .setSmallIcon(R.drawable.ic_app)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
+    private void generateNotification(Notification notification) {
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.putExtra("notification", notification);
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mContext);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(1, builder.build());
-
-
-
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PushNotification pushNotification = new PushNotification(getString(R.string.notification), getString(R.string.notification_description), mContext, NotificationUtil.NOTIFICATION_CHANNEL, pendingIntent);
+        NotificationUtil.generateNotification(pushNotification);
     }
 
     @Override
     public void onItemClick(int position) {
+//        generateNotification(mNotificationAdapter.getItem(position));
         Log.d(TAG, "onItemClick: Item clicked with position " + position);
         navigateToCreationFragment(position);
     }

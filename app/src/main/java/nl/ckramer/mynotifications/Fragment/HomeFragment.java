@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment implements NotificationAdapter.OnItem
 
     @Override
     public void onItemClick(int position) {
-//        generateNotification(mNotificationAdapter.getItem(position));
+        generateNotification(mNotificationAdapter.getItem(position));
         Log.d(TAG, "onItemClick: Item clicked with position " + position);
         navigateToCreationFragment(position);
     }

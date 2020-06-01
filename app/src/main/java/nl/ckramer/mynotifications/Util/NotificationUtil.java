@@ -1,8 +1,17 @@
 package nl.ckramer.mynotifications.Util;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.RingtoneManager;
 import android.os.Build;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -31,6 +40,7 @@ public class NotificationUtil {
                 .setContentTitle(pushNotification.getTitle())
                 .setContentText(pushNotification.getContent())
                 .setPriority(pushNotification.getImportance())
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setAutoCancel(true);
 
         if(pushNotification.getPendingIntent() != null) {
@@ -41,6 +51,20 @@ public class NotificationUtil {
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build());
+    }
+
+    public static void generateScheduledNotification(Context context, int notificationId, Date date) {
+//        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//        Intent intent = new Intent(context, NotificationPublisher.class);
+//        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 999999, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+//
+//        // Set the alarm to start at 00:00
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 0);
+//        calendar.set(Calendar.MINUTE, 0);
+//
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
     }
 
 }

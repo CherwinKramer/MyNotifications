@@ -1,6 +1,7 @@
 package nl.ckramer.mynotifications.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,6 +90,10 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_save, menu);
+        if(mNotification != null) {
+            menu.add(0, R.id.visbility_icon, 0, "Visibility").setIcon(R.drawable.ic_visibility_off)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -101,6 +106,8 @@ public class NotificationCreateFragment extends Fragment implements DatePickerDi
                 saveAction();
             }
             return true;
+        } else if (id == R.id.visbility_icon) {
+            Log.d(TAG, "onOptionsItemSelected: visbility icon");
         }
 
         return super.onOptionsItemSelected(item);

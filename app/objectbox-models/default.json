@@ -34,7 +34,7 @@
     },
     {
       "id": "2:3280450797295766213",
-      "lastPropertyId": "7:8732398307886483724",
+      "lastPropertyId": "8:5697144738032721233",
       "name": "Notification",
       "properties": [
         {
@@ -72,6 +72,12 @@
           "id": "7:8732398307886483724",
           "name": "notifyDate",
           "type": 10
+        },
+        {
+          "id": "8:5697144738032721233",
+          "name": "finished",
+          "type": 1,
+          "flags": 4
         }
       ],
       "relations": []

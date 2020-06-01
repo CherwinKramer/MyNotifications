@@ -15,6 +15,7 @@ public class Notification extends BaseEntity implements Parcelable {
     private String location;
     private Date date;
     private Date notifyDate;
+    private boolean finished;
 
     public Notification() {
     }
@@ -59,6 +60,14 @@ public class Notification extends BaseEntity implements Parcelable {
         this.notifyDate = notifyDate;
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -73,6 +82,7 @@ public class Notification extends BaseEntity implements Parcelable {
         dest.writeLong(this.notifyDate != null ? this.notifyDate.getTime() : -1);
         dest.writeLong(this.getId());
         dest.writeLong(this.getCreatedDate() != null ? this.getCreatedDate().getTime() : -1);
+        dest.writeInt(this.finished ? 1 : 0);
     }
 
     protected Notification(Parcel in) {
@@ -86,6 +96,7 @@ public class Notification extends BaseEntity implements Parcelable {
         this.setId(in.readLong());
         long tmpCreatedDate = in.readLong();
         this.setCreatedDate(tmpCreatedDate == -1 ? null : new Date(tmpCreatedDate));
+        this.finished = in.readInt() == 1;
     }
 
     public static final Parcelable.Creator<Notification> CREATOR = new Parcelable.Creator<Notification>() {
